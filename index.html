@@ -3,63 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>AQI</title>
     <style>
+        body {
+            margin: 5vh;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+        }
+        .header img {
+            height: 70px;
+            width: 70px;
+            border-radius: 50%;
+            border: solid;
+        }
+        .header h1 {
+            font-size: 28px;
+            margin: 0;
+        }
         .flex-container {
             display: flex;
             justify-content: center;
+            align-items: stretch;
+            height: 80vh;
+            gap: 30px;
+            padding-top: 10px;
         }
         .flex {
-            font-size: 90px;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            height: 100%;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            font-size: 32px;
             color: white;
+            font-weight: bold;
         }
         #flex1 {
-            background-color: #FF6B6B; /* vibrant coral red */
-            height: 70vh;
-            width: 25vw;
+            background-color: #FF6B6B;
+            width: 35vw;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+        }
+        .form-container {
+            width: 100%;
+            max-width: 350px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            margin: 10px 5px 5px;
+        }
+        input, select, textarea {
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        button {
+            margin-top: 15px;
+            padding: 12px;
+            background-color: #4D96FF;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #2C6EDF;
+        }
+        #terms {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 14px;
         }
         #flex2 {
-            background-color: #6BCB77; /* fresh green */
+            background-color: #6BCB77;
             height: 30vh;
-            width: 25vw;
+            width: 40vw;
         }
         #flex3 {
-            background-color: #4D96FF; /* bright modern blue */
-            height: 50vh;
-            width: 60vw;
+            background-color: #4D96FF;
+            height: 30vh;
+            width: 40vw;
         }
         #flex4 {
-            background-color: #FFD93D; /* vibrant yellow */
-            height: 50vh;
-            width: 60vw;
-            color: #333; /* better contrast on yellow */
+            background-color: #FFD93D;
+            height: 30vh;
+            width: 40vw;
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <div style="justify-items: center;">
-        <p>
-            <img src="aqi.jpg" alt="The Flexbox" height="70px" width="70px" style="border-radius: 60%; border: solid;">
-        </p>
-        <h1>FlexBox</h1>
+    <div class="header">
+        <img src="AQI.jpg" alt="AQI Logo">
+        <h1>AQI</h1>
     </div>
- 
-    <div class="flex-container" style="display: flex;">
-        <div>
-            <div id="flex1" class="flex">1</div>
-            <div id="flex2" class="flex">2</div>
+
+    <div class="flex-container">
+        <div id="flex1">
+            <h2>Registration Form</h2>
+            <form class="form-container">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="password">Create Password</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+
+                <label for="dob">Birth Date</label>
+                <input type="date" id="dob" name="dob" required>
+
+                <label for="country">Country</label>
+                <select id="country" name="country" required>
+                    <option value="">Choose your country</option>
+                    <option value="USA">United States</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Bangladesh">Bangladesh</option>
+                    <option value="India">India</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label>Gender</label>
+                <div class="radio-group">
+                    <input type="radio" id="male" name="gender" value="Male" required>
+                    <label for="male">Male</label>
+
+                    <input type="radio" id="female" name="gender" value="Female" required>
+                    <label for="female">Female</label>
+
+                    <input type="radio" id="other" name="gender" value="Other" required>
+                    <label for="other">Other</label>
+                </div>
+
+                <label for="color">Favorite Color</label>
+                <input type="color" id="color" name="color">
+
+                <label for="opinion">Your Thoughts</label>
+                <textarea id="opinion" name="opinion" placeholder="Write something..."></textarea>
+
+                <div id="terms">
+                    <input type="checkbox" id="agree" name="agree" required>
+                    <label for="agree">I accept the <a href="terms.html">Terms & Conditions</a></label>
+                </div>
+
+                <button type="submit">Register</button>
+            </form>
         </div>
         <div>
-            <div id="flex3" class="flex">3</div>
-            <div id="flex4" class="flex">4</div>
+            <div id="flex2" class="flex">AQI Stats</div>
+            <div id="flex3" class="flex">Live Updates</div>
+            <div id="flex4" class="flex">Weather Info</div>
         </div>
-       
     </div>
- 
 </body>
 </html>
