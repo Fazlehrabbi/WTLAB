@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AQI Registration</title>
+  <style>
+    body {
+      margin: 5vh;
+      font-family: Arial, sans-serif;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px;
+    }
+    .header img {
+      height: 70px;
+      width: 70px;
+      border-radius: 50%;
+      border: solid;
+    }
+    .header h1 {
+      font-size: 28px;
+      margin: 0;
+    }
+    .flex-container {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      height: 80vh;
+      gap: 30px;
+      padding-top: 10px;
+    }
+    .flex {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+      font-size: 32px;
+      color: white;
+      font-weight: bold;
+    }
+    #flex1 {
+      background-color: #FF6B6B;
+      width: 40vw;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow-y: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+    .form-container {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: bold;
+      margin: 10px 5px 5px;
+    }
+    input, select, textarea {
+      padding: 10px;
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+    }
+    textarea {
+      resize: vertical;
+    }
+    .radio-group {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    button {
+      margin-top: 15px;
+      padding: 12px;
+      background-color: #4D96FF;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #2C6EDF;
+    }
+    #terms {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 14px;
+    }
+    #color-picker-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    #color-preview {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #ccc;
+    }
+    #flex2, #flex3 {
+      background-color: #6BCB77;
+      height: 40vh;
+      width: 40vw;
+    }
+    .error-message {
+      color: red;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="AQI.jpg" alt="AQI Logo">
+    <h1>AQI</h1>
+  </div>
+
+  <div class="flex-container">
+    <div id="flex1">
+      <h2>Registration Form</h2>
+      <form class="form-container" id="registrationForm">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="password">Create Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" id="confirm_password" name="confirm_password" required>
+
+        <label for="dob">Birth Date</label>
+        <input type="date" id="dob" name="dob" required>
+
+        <label for="country">Country</label>
+        <select id="country" name="country" required>
+          <option value="">Choose your country</option>
+          <option value="USA">United States</option>
+          <option value="UK">United Kingdom</option>
+          <option value="Canada">Canada</option>
+          <option value="Australia">Australia</option>
+          <option value="Bangladesh">Bangladesh</option>
+          <option value="India">India</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <label>Gender</label>
+        <div class="radio-group">
+          <input type="radio" id="male" name="gender" value="Male">
+          <label for="male">Male</label>
+          <input type="radio" id="female" name="gender" value="Female">
+          <label for="female">Female</label>
+          <input type="radio" id="other" name="gender" value="Other">
+          <label for="other">Other</label>
+        </div>
+
+        <div id="color-picker-wrapper">
+          <label for="color">Favorite Color</label>
+          <input type="color" id="color" name="color" required>
+          <div id="color-preview"></div>
+        </div>
+
+        <label for="opinion">Your Thoughts</label>
+        <textarea id="opinion" name="opinion" placeholder="Write something..."></textarea>
+
+        <div id="terms">
+          <input type="checkbox" id="agree" name="agree" required>
+          <label for="agree">I accept the <a href="terms.html">Terms & Conditions</a></label>
+        </div>
+
+        <button type="submit">Register</button>
+
+        <div id="error-message" class="error-message"></div>
+      </form>
+    </div>
+    <div>
+      <div id="flex2" class="flex"></div>
+      <div id="flex3" class="flex"></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("registrationForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const errorDiv = document.getElementById("error-message");
+      errorDiv.innerHTML = "";
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm_password").value;
+      const dob = new Date(document.getElementById("dob").value);
+      const country = document.getElementById("country").value;
+      const gender = document.querySelector('input[name="gender"]:checked');
+      const color = document.getElementById("color").value;
+      const agree = document.getElementById("agree").checked;
+
+      const namePattern = /^[a-zA-Z0-9.\- ]+$/;
+      const emailPattern = /^\d{2}-\d{5}-\d@student\.aiub\.edu$/;
+      const passwordLength = password.length;
+
+      // Name Validation
+      if (!namePattern.test(name)) {
+        errorDiv.innerHTML = "Name can only contain letters, numbers, spaces, dots (.) or hyphens (-).";
+        return;
+      }
+      // Email Validation
+      if (!emailPattern.test(email)) {
+        errorDiv.innerHTML = "Email must be in the format: 22-49575-3@student.aiub.edu";
+        return;
+      }
+      // Password Validation
+      if (passwordLength < 6 || passwordLength > 8) {
+        errorDiv.innerHTML = "Password must be between 6 to 8 characters.";
+        return;
+      }
+      // Password Match Validation
+      if (password !== confirmPassword) {
+        errorDiv.innerHTML = "Passwords do not match.";
+        return;
+      }
+      // DOB Validation
+      if (isNaN(dob.getTime())) {
+        errorDiv.innerHTML = "Please enter a valid birth date.";
+        return;
+      }
+      const today = new Date();
+      let age = today.getFullYear() - dob.getFullYear();
+      const m = today.getMonth() - dob.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+        age--;
+      }
+      if (age < 18) {
+        errorDiv.innerHTML = "You must be at least 18 years old to register.";
+        return;
+      }
+      // Country Validation
+      if (country === "") {
+        errorDiv.innerHTML = "Please select a country.";
+        return;
+      }
+      // Gender Validation
+      if (!gender) {
+        errorDiv.innerHTML = "Please select a gender.";
+        return;
+      }
+      // Color Validation
+      if (!color) {
+        errorDiv.innerHTML = "Please choose your favorite color.";
+        return;
+      }
+      // Terms and Conditions Validation
+      if (!agree) {
+        errorDiv.innerHTML = "You must accept the Terms & Conditions.";
+        return;
+      }
+
+      // If all validation passes
+      alert("Registration successful!");
+      this.submit();
+    });
+
+    // Update color preview when the user selects a color
+    document.getElementById("color").addEventListener("input", function() {
+      document.getElementById("color-preview").style.backgroundColor = this.value;
+    });
+  </script>
+</body>
+</html>
