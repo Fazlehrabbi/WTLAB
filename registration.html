@@ -5,70 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AQI Registration</title>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
       margin: 5vh;
       font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
     }
     .header {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 30px;
-      padding: 20px;
+      gap: 20px;
+      padding: 20px 0;
     }
     .header img {
       height: 70px;
       width: 70px;
       border-radius: 50%;
-      border: solid;
+      border: 2px solid #000;
     }
     .header h1 {
-      font-size: 28px;
-      margin: 0;
+      font-size: 32px;
+      font-weight: bold;
+      color: #333;
     }
     .flex-container {
       display: flex;
       justify-content: center;
       align-items: stretch;
-      height: 80vh;
-      gap: 30px;
-      padding-top: 10px;
-    }
-    .flex {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      border-radius: 10px;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-      font-size: 32px;
-      color: white;
-      font-weight: bold;
+      gap: 0;
+      width: 100%;
+      max-width: 900px;
+      margin: auto;
+      background-color: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
     }
     #flex1 {
       background-color: #FF6B6B;
-      width: 40vw;
-      padding: 25px;
+      flex: 1;
+      padding: 30px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       overflow-y: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     }
     .form-container {
       width: 100%;
-      max-width: 400px;
-      padding: 20px;
+      max-width: 350px;
     }
     h2 {
       text-align: center;
       margin-bottom: 20px;
+      font-size: 24px;
+      color: white;
     }
     label {
       font-weight: bold;
-      margin: 10px 5px 5px;
+      display: block;
+      margin: 10px 0 5px;
+      color: white;
     }
     input, select, textarea {
       padding: 10px;
@@ -76,14 +78,16 @@
       border-radius: 5px;
       border: 1px solid #ccc;
       margin-top: 5px;
+      margin-bottom: 5px;
     }
     textarea {
       resize: vertical;
     }
     .radio-group {
       display: flex;
-      gap: 15px;
-      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      color: white;
     }
     button {
       margin-top: 15px;
@@ -93,6 +97,7 @@
       font-size: 16px;
       border-radius: 5px;
       cursor: pointer;
+      width: 100%;
       transition: background 0.3s;
     }
     button:hover {
@@ -101,34 +106,77 @@
     #terms {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 10px;
       font-size: 14px;
+      margin-top: 10px;
+    }
+    #terms label {
+      color: white;
     }
     #color-picker-wrapper {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      margin-bottom: 10px;
     }
     #color-preview {
       width: 30px;
       height: 30px;
       border: 1px solid #ccc;
+      background-color: #fff;
     }
-    #flex2, #flex3 {
+    .right-container {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    #flex2 {
+      flex: 1;
       background-color: #6BCB77;
-      height: 40vh;
-      width: 40vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      font-weight: bold;
+      color: white;
+    }
+    #flex3 {
+      flex: 2;
+      background-color: #4D96FF;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      font-weight: bold;
+      color: white;
     }
     .error-message {
-      color: red;
-      margin-top: 10px;
-      text-align: center;
+      color: yellow;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    @media (max-width: 768px) {
+      .flex-container {
+        flex-direction: column;
+        max-width: 95%;
+        margin: 20px auto;
+      }
+      .right-container {
+        flex-direction: row;
+        height: 200px;
+      }
+      #flex2, #flex3 {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="header">
-    <img src="AQI.jpg" alt="AQI Logo">
+    <img src="aqi.png" alt="AQI Logo">
     <h1>AQI</h1>
   </div>
 
@@ -136,73 +184,103 @@
     <div id="flex1">
       <h2>Registration Form</h2>
       <form class="form-container" id="registrationForm">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" placeholder="Enter your name" required>
-
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-
-        <label for="password">Create Password</label>
-        <input type="password" id="password" name="password" required>
-
-        <label for="confirm_password">Confirm Password</label>
-        <input type="password" id="confirm_password" name="confirm_password" required>
-
-        <label for="dob">Birth Date</label>
-        <input type="date" id="dob" name="dob" required>
-
-        <label for="country">Country</label>
-        <select id="country" name="country" required>
-          <option value="">Choose your country</option>
-          <option value="USA">United States</option>
-          <option value="UK">United Kingdom</option>
-          <option value="Canada">Canada</option>
-          <option value="Australia">Australia</option>
-          <option value="Bangladesh">Bangladesh</option>
-          <option value="India">India</option>
-          <option value="Other">Other</option>
-        </select>
-
-        <label>Gender</label>
-        <div class="radio-group">
-          <input type="radio" id="male" name="gender" value="Male">
-          <label for="male">Male</label>
-          <input type="radio" id="female" name="gender" value="Female">
-          <label for="female">Female</label>
-          <input type="radio" id="other" name="gender" value="Other">
-          <label for="other">Other</label>
+        
+        <div class="input-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+          <div id="nameError" class="error-message"></div>
         </div>
 
-        <div id="color-picker-wrapper">
-          <label for="color">Favorite Color</label>
-          <input type="color" id="color" name="color" required>
-          <div id="color-preview"></div>
+        <div class="input-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="22-49575-3@student.aiub.edu" required>
+          <div id="emailError" class="error-message"></div>
         </div>
 
-        <label for="opinion">Your Thoughts</label>
-        <textarea id="opinion" name="opinion" placeholder="Write something..."></textarea>
+        <div class="input-group">
+          <label for="password">Create Password</label>
+          <input type="password" id="password" name="password" required>
+          <div id="passwordError" class="error-message"></div>
+        </div>
+
+        <div class="input-group">
+          <label for="confirm_password">Confirm Password</label>
+          <input type="password" id="confirm_password" name="confirm_password" required>
+          <div id="confirmPasswordError" class="error-message"></div>
+        </div>
+
+        <div class="input-group">
+          <label for="dob">Birth Date</label>
+          <input type="date" id="dob" name="dob" required>
+          <div id="dobError" class="error-message"></div>
+        </div>
+
+        <div class="input-group">
+          <label for="country">Country</label>
+          <select id="country" name="country" required>
+            <option value="">Choose your country</option>
+            <option value="USA">United States</option>
+            <option value="UK">United Kingdom</option>
+            <option value="Canada">Canada</option>
+            <option value="Australia">Australia</option>
+            <option value="Bangladesh">Bangladesh</option>
+            <option value="India">India</option>
+            <option value="Other">Other</option>
+          </select>
+          <div id="countryError" class="error-message"></div>
+        </div>
+
+        <div class="input-group">
+          <label>Gender</label>
+          <div class="radio-group">
+            <input type="radio" id="male" name="gender" value="Male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="Female">
+            <label for="female">Female</label>
+            <input type="radio" id="other" name="gender" value="Other">
+            <label for="other">Other</label>
+          </div>
+          <div id="genderError" class="error-message"></div>
+        </div>
+
+        <div class="input-group">
+          <div id="color-picker-wrapper">
+            <label for="color">Favorite Color</label>
+            <input type="color" id="color" name="color" required>
+            <div id="color-preview"></div>
+          </div>
+          <div id="colorError" class="error-message"></div>
+        </div>
+
+        <div class="input-group">
+          <label for="opinion">Your Thoughts</label>
+          <textarea id="opinion" name="opinion" placeholder="Write something..."></textarea>
+        </div>
 
         <div id="terms">
           <input type="checkbox" id="agree" name="agree" required>
-          <label for="agree">I accept the <a href="terms.html">Terms & Conditions</a></label>
+          <label for="agree">I accept the <a href="terms.html" style="color: lightyellow;">Terms & Conditions</a></label>
         </div>
+        <div id="termsError" class="error-message"></div>
 
         <button type="submit">Register</button>
-
-        <div id="error-message" class="error-message"></div>
       </form>
     </div>
-    <div>
-      <div id="flex2" class="flex"></div>
-      <div id="flex3" class="flex"></div>
+
+    <div class="right-container">
+      <div id="flex2">Box 2</div>
+      <div id="flex3">Box 3</div>
     </div>
   </div>
 
   <script>
     document.getElementById("registrationForm").addEventListener("submit", function (e) {
       e.preventDefault();
-      const errorDiv = document.getElementById("error-message");
-      errorDiv.innerHTML = "";
+      let isValid = true;
+
+      // Clear previous errors
+      const errorFields = ["nameError", "emailError", "passwordError", "confirmPasswordError", "dobError", "countryError", "genderError", "colorError", "termsError"];
+      errorFields.forEach(id => document.getElementById(id).innerHTML = "");
 
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
@@ -216,70 +294,50 @@
 
       const namePattern = /^[a-zA-Z0-9.\- ]+$/;
       const emailPattern = /^\d{2}-\d{5}-\d@student\.aiub\.edu$/;
-      const passwordLength = password.length;
 
-      // Name Validation
       if (!namePattern.test(name)) {
-        errorDiv.innerHTML = "Name can only contain letters, numbers, spaces, dots (.) or hyphens (-).";
-        return;
+        document.getElementById("nameError").innerHTML = "Invalid name format.";
+        isValid = false;
       }
-      // Email Validation
       if (!emailPattern.test(email)) {
-        errorDiv.innerHTML = "Email must be in the format: 22-49575-3@student.aiub.edu";
-        return;
+        document.getElementById("emailError").innerHTML = "Invalid email format.";
+        isValid = false;
       }
-      // Password Validation
-      if (passwordLength < 6 || passwordLength > 8) {
-        errorDiv.innerHTML = "Password must be between 6 to 8 characters.";
-        return;
+      if (password.length < 6 || password.length > 8) {
+        document.getElementById("passwordError").innerHTML = "Password must be 6-8 characters.";
+        isValid = false;
       }
-      // Password Match Validation
       if (password !== confirmPassword) {
-        errorDiv.innerHTML = "Passwords do not match.";
-        return;
+        document.getElementById("confirmPasswordError").innerHTML = "Passwords do not match.";
+        isValid = false;
       }
-      // DOB Validation
-      if (isNaN(dob.getTime())) {
-        errorDiv.innerHTML = "Please enter a valid birth date.";
-        return;
+      if (isNaN(dob.getTime()) || new Date().getFullYear() - dob.getFullYear() < 18) {
+        document.getElementById("dobError").innerHTML = "Must be at least 18 years old.";
+        isValid = false;
       }
-      const today = new Date();
-      let age = today.getFullYear() - dob.getFullYear();
-      const m = today.getMonth() - dob.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
-        age--;
-      }
-      if (age < 18) {
-        errorDiv.innerHTML = "You must be at least 18 years old to register.";
-        return;
-      }
-      // Country Validation
       if (country === "") {
-        errorDiv.innerHTML = "Please select a country.";
-        return;
+        document.getElementById("countryError").innerHTML = "Please select a country.";
+        isValid = false;
       }
-      // Gender Validation
       if (!gender) {
-        errorDiv.innerHTML = "Please select a gender.";
-        return;
+        document.getElementById("genderError").innerHTML = "Please select a gender.";
+        isValid = false;
       }
-      // Color Validation
       if (!color) {
-        errorDiv.innerHTML = "Please choose your favorite color.";
-        return;
+        document.getElementById("colorError").innerHTML = "Please select a favorite color.";
+        isValid = false;
       }
-      // Terms and Conditions Validation
       if (!agree) {
-        errorDiv.innerHTML = "You must accept the Terms & Conditions.";
-        return;
+        document.getElementById("termsError").innerHTML = "You must accept the terms.";
+        isValid = false;
       }
 
-      // If all validation passes
-      alert("Registration successful!");
-      this.submit();
+      if (isValid) {
+        alert("Registration Successful!");
+        this.submit();
+      }
     });
 
-    // Update color preview when the user selects a color
     document.getElementById("color").addEventListener("input", function() {
       document.getElementById("color-preview").style.backgroundColor = this.value;
     });
